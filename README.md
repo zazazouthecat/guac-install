@@ -6,9 +6,9 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
 
 ## How to Run:
 
-### Téléchargé directement depuis :
+### Télécharger directement depuis :
 
-`wget https://git.io/fxZq5 -O guac-install.sh`
+`wget https://git.io/JEz4P -O guac-install.sh`
 
 ### Rendre le script executable:
 

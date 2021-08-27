@@ -844,9 +844,9 @@ if [ "${installFail2ban}" = true ]; then
 		
 	cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
-	sed -i 's/bantime.*=.*/bantime = ${fail2banbanTime}/' /etc/fail2ban/jail.local
-	sed -i 's/findtime.*=.*/findtime = ${fail2banfindTime}/' /etc/fail2ban/jail.local
-	sed -i 's/maxretry.*=.*/maxretry = ${fail2banmaxRetry}/' /etc/fail2ban/jail.local
+	sed -i 's/bantime.*=.*/bantime = "${fail2banbanTime}"/' /etc/fail2ban/jail.local
+	sed -i 's/findtime.*=.*/findtime = "${fail2banfindTime}"/' /etc/fail2ban/jail.local
+	sed -i 's/maxretry.*=.*/maxretry = "${fail2banmaxRetry}"/' /etc/fail2ban/jail.local
 		
 	sed -i ':a;N;$!ba;s/\[guacamole\]\n\nport/[guacamole]\nenabled = true\nport/g' /etc/fail2ban/jail.local
 	sed -i 's/failregex = /failregex = \bAuthentication attempt from \[<HOST>.*\] for user ".*" failed\.$\n#/g' /etc/fail2ban/filter.d/guacamole.conf
@@ -870,7 +870,7 @@ if [ "${installFail2ban}" = true ]; then
 	if [ "${fail2bancustomIp}" = true ]; then
 		[ -z "${fail2banNotBanIpRange}" ] \
 		&& read -p "Entrez la plage d'ip a exclure (Ex : 172.16.0.0/16): " fail2banNotBanIpRange
-		sed -i "s|#ignoreip = 127.0.0.1/8 ::1|ignoreip = 127.0.0.1/8 ::1 192.168.0.0/16 ${fail2ban-NotBanIpRange}|" /etc/fail2ban/jail.local
+		sed -i 's|#ignoreip = 127.0.0.1/8 ::1|ignoreip = 127.0.0.1/8 ::1 192.168.0.0/16 "${fail2banNotBanIpRange}"|' /etc/fail2ban/jail.local
 	fi
 fi
 echo

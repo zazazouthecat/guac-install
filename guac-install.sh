@@ -62,11 +62,11 @@ ldapUserAttribute=""
 ldapUserBind=""
 ldapUserBindOu=""
 ldapUserBindPassword=""
-fail2ban-banTime=""
-fail2ban-findTime=""
-fail2ban-maxRetry=""
-fail2ban-customIp=""
-fail2ban-NotBanIpRange=""
+fail2banbanTime=""
+fail2banfindTime=""
+fail2banmaxRetry=""
+fail2bancustomIp=""
+fail2banNotBanIpRange=""
 
 #Prez !
 
@@ -821,12 +821,12 @@ fi
 
 # Installation et configuration de fail2ban
 if [ "${installFail2ban}" = true ]; then
-	[ -z "${fail2ban-banTime}" ] \
-	&& read -p "Entrez le nombre de minutes ou l'ip sera bannie (Ex : 15m ): " fail2ban-banTime
-	[ -z "${fail2ban-maxRetry}" ] \
-	&& read -p "Entrez le nombre maximum autorisé de tentative de mot de passe (Ex : 5) : " fail2ban-maxRetry
-	[ -z "${fail2ban-findTime}" ] \
-	&& read -p "Entrez le laps de temps autorisé pour faire le maximum de tentative (Ex : 10m , Si 5 essais en < 10min = Ban) : " fail2ban-findTime
+	[ -z "${fail2banbanTime}" ] \
+	&& read -p "Entrez le nombre de minutes ou l'ip sera bannie (Ex : 15m ): " fail2banbanTime
+	[ -z "${fail2banmaxRetry}" ] \
+	&& read -p "Entrez le nombre maximum autorisé de tentative de mot de passe (Ex : 5) : " fail2banmaxRetry
+	[ -z "${fail2banfindTime}" ] \
+	&& read -p "Entrez le laps de temps autorisé pour faire le maximum de tentative (Ex : 10m , Si 5 essais en < 10min = Ban) : " fail2banfindTime
 	
 	echo -e "${CYAN}Installation du paquet Fail2ban...${NC}"
 

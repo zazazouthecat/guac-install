@@ -69,7 +69,7 @@ fail2bancustomIp=""
 fail2banNotBanIpRange=""
 
 #Prez !
-
+clear
 echo -e "${YELLOW} |'-._/\_.-'| ***************************************** |'-._/\_.-'| "
 echo -e "${YELLOW} |    ||    | ***************************************** |    ||    | "
 echo -e "${YELLOW} |___o()o___| ***************************************** |___o()o___| "
@@ -555,7 +555,9 @@ echo
 cd ..
 mv -f guacamole-${GUACVERSION}.war /etc/guacamole/guacamole.war
 mv -f guacamole-auth-jdbc-${GUACVERSION}/mysql/guacamole-auth-jdbc-mysql-${GUACVERSION}.jar /etc/guacamole/extensions/
-mv -f guacamole-auth-ldap-${GUACVERSION}/guacamole-auth-ldap-${GUACVERSION}.jar /etc/guacamole/extensions/
+if [ "${installLDAP}" = true ]; then
+	mv -f guacamole-auth-ldap-${GUACVERSION}/guacamole-auth-ldap-${GUACVERSION}.jar /etc/guacamole/extensions/
+fi
 
 # Create Symbolic Link for Tomcat
 ln -sf /etc/guacamole/guacamole.war /var/lib/${TOMCAT}/webapps/
@@ -846,12 +848,18 @@ if [ "${installFail2ban}" = true ]; then
 		
 	cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
-	sed -i "s/bantime.*=.*/bantime = ${fail2banbanTime}/" /etc/fail2ban/jail.local
-	sed -i "s/findtime.*=.*/findtime = ${fail2banfindTime}/" /etc/fail2ban/jail.local
-	sed -i "s/maxretry.*=.*/maxretry = ${fail2banmaxRetry}/" /etc/fail2ban/jail.local
-		
-	sed -i ':a;N;$!ba;s/\[guacamole\]\n\nport/[guacamole]\nenabled = true\nport/g' /etc/fail2ban/jail.local
-	sed -i 's/failregex = /failregex = \bAuthentication attempt from \[<HOST>.*\] for user ".*" failed\.$\n#/g' /etc/fail2ban/filter.d/guacamole.conf
+	#sed -i "s/bantime.*=.*/bantime = ${fail2banbanTime}/" /etc/fail2ban/jail.local
+	#sed -i "s/findtime.*=.*/findtime = ${fail2banfindTime}/" /etc/fail2ban/jail.local
+	#sed -i "s/maxretry.*=.*/maxretry = ${fail2banmaxRetry}/" /etc/fail2ban/jail.local
+	#sed -i ':a;N;$!ba;s/\[guacamole\]\n\nport/[guacamole]\nenabled = true\nport/g' /etc/fail2ban/jail.local
+	echo "[guacamole]" >> /etc/fail2ban/jail.d/guacamole.conf
+    echo "enabled = true" >> /etc/fail2ban/jail.d/guacamole.conf
+    echo "bantime=${fail2banbanTime}" >> /etc/fail2ban/jail.d/guacamole.conf
+    echo "findtime=${fail2banfindTime}" >> /etc/fail2ban/jail.d/guacamole.conf
+	echo "maxretry=${fail2banmaxRetry}" >> /etc/fail2ban/jail.d/guacamole.conf
+	
+	
+	sed -i 's/failregex = /failregex = \\bAuthentication attempt from \\[<HOST>.*\\] for user ".*" failed\\.$/g' /etc/fail2ban/filter.d/guacamole.conf
 		
 			
 	echo
@@ -869,7 +877,8 @@ if [ "${installFail2ban}" = true ]; then
 	if [ "${fail2bancustomIp}" = true ]; then
 		[ -z "${fail2banNotBanIpRange}" ] \
 		&& read -p "Entrez la plage d'ip a exclure (Ex : 172.16.0.0/16): " fail2banNotBanIpRange
-		sed -i "s|#ignoreip = 127.0.0.1/8 ::1|ignoreip = 127.0.0.1/8 ::1 192.168.0.0/16 ${fail2banNotBanIpRange}|" /etc/fail2ban/jail.local
+		echo "ignoreip=127.0.0.1/8 192.168.0.0/16 ${fail2banNotBanIpRange}" >> /etc/fail2ban/jail.d/guacamole.conf
+		#sed -i "s|#ignoreip = 127.0.0.1/8 ::1|ignoreip = 127.0.0.1/8 ::1 192.168.0.0/16 ${fail2banNotBanIpRange}|" /etc/fail2ban/jail.local
 	fi
 	
 	echo

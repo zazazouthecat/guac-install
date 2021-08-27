@@ -1,5 +1,6 @@
 #Script SBER v1.0 - 25/08/2021
 #Script basé sur les sources https://github.com/MysticRyuujin/guac-install
+# - Ajout Fail2Band
 # - Ajout LDAP
 # - Correctif droit root pour RDP
 # - Un peu de trad fr
@@ -42,6 +43,8 @@ LOG="/tmp/guacamole_${GUACVERSION}_build.log"
 installTOTP=""
 installDuo=""
 installMySQL=""
+installFail2ban=""
+installLDAP=""
 mysqlHost=""
 mysqlPort=""
 mysqlRootPwd=""
@@ -50,7 +53,6 @@ guacUser=""
 guacPwd=""
 PROMPT=""
 MYSQL=""
-installLDAP=""
 ldapHost=""
 ldapPort=""
 ldapDC1=""
@@ -60,7 +62,11 @@ ldapUserAttribute=""
 ldapUserBind=""
 ldapUserBindOu=""
 ldapUserBindPassword=""
-
+fail2ban-banTime=""
+fail2ban-findTime=""
+fail2ban-maxRetry=""
+fail2ban-customIp=""
+fail2ban-NotBanIpRange=""
 
 #Prez !
 
@@ -294,6 +300,9 @@ if [ "${installLDAP}" = true ]; then
 	fi
 fi
 echo
+
+
+
 
 # Different version of Ubuntu/Linux Mint and Debian have different package names...
 source /etc/os-release
@@ -794,12 +803,88 @@ fi
 # Unless someone opens an issue about it or submits a pull request, I'm going to ignore it for now
 
 
+
+
+#################
+### FAIL2BAN ###
+#################
+# On demande si on veut utiliser le Fail2Ban
+if [[ -z ${installFail2ban} ]]; then
+    echo -e -n "${CYAN}Voulez-vous installer la fonction Fail2Ban (Anti-BruteForce) ? (O/n): ${NC}"
+    read PROMPT
+    if [[ ${PROMPT} =~ ^[Nn]$ ]]; then
+        installFail2ban=false
+    else
+        installFail2ban=true
+    fi
+fi
+
+# Installation et configuration de fail2ban
+if [ "${installFail2ban}" = true ]; then
+echo -e "${CYAN}Installation du paquet Fail2ban...${NC}"
+
+apt-get -y install fail2ban &>> ${LOG}
+ 
+	if [ $? -ne 0 ]; then
+		echo -e "${RED}Echec. Voir ${LOG}${NC}" 1>&2
+		#exit 1 -- useless
+	else
+		echo -e "${GREEN}OK${NC}"
+		echo
+		echo -e "${CYAN}Configuration de Fail2ban pour Guacamole...${NC}"
+		
+		cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+		
+		[ -z "${fail2ban-banTime}" ] \
+		  && read -p "Entrez le nombre de minutes ou l'ip sera bannie (Ex : 15m ): " fail2ban-banTime
+		[ -z "${fail2ban-maxRetry}" ] \
+		  && read -p "Entrez le nombre maximum autorisé de tentative de mot de passe (Ex : 5) : " fail2ban-maxRetry
+		[ -z "${fail2ban-findTime}" ] \
+		  && read -p "Entrez le laps de temps autorisé pour faire le maximum de tentative (Ex : 10m , Si 5 essais en < 10min = Ban) : " fail2ban-findTime
+
+		sed -i 's/bantime = 10m/bantime = ${fail2ban-banTime}/' /etc/fail2ban/jail.local
+		sed -i 's/findtime = 10m/findtime = ${fail2ban-findTime}/' /etc/fail2ban/jail.local
+		sed -i 's/maxretry = 5/maxretry = ${fail2ban-maxRetry}/' /etc/fail2ban/jail.local
+		
+		sed -i ':a;N;$!ba;s/\[guacamole\]\n\nport/[guacamole]\nenabled = true\nport/g' /etc/fail2ban/jail.local
+		sed -i 's/failregex = /failregex = \bAuthentication attempt from \[<HOST>.*\] for user ".*" failed\.$\n#/g' /etc/fail2ban/filter.d/guacamole.conf
+		
+		echo -e "${CYAN}Démarrage du service Fail2ban & Activation au démarrage...${NC}"
+		sudo service fail2ban-client restart
+		systemctl enable fail2ban
+			
+	fi
+	echo
+	
+	echo -e "${CYAN}Ajout de regle, pour empêcher les ip locales d'etre ban ${NC}"
+
+	if [[ -z ${fail2ban-customIp} ]]; then
+			echo -e -n "${CYAN}Voulez-vous configurer une plage d'ip perso ? (O/n): ${NC}"
+			read PROMPT
+			if [[ ${PROMPT} =~ ^[Nn]$ ]]; then
+				fail2ban-customIp=false
+			else
+				fail2ban-customIp=true
+			fi
+	fi
+	if [ "${fail2ban-customIp}" = true ]; then
+		[ -z "${fail2ban-NotBanIpRange}" ] \
+		&& read -p "Entrez la plage d'ip a exclure (Ex : 172.16.0.0/16): " fail2ban-NotBanIpRange
+		sed -i "s|#ignoreip = 127.0.0.1/8 ::1|ignoreip = 127.0.0.1/8 ::1 192.168.0.0/16 ${fail2ban-NotBanIpRange}|" /etc/fail2ban/jail.local
+	fi
+fi
+echo
+
+
 # Cleanup
 echo -e "${CYAN}Nettoyage des fichiers d'installation...${NC}"
 rm -rf guacamole-*
 rm -rf mysql-connector-java-*
 unset MYSQL_PWD
 echo
+
+
+
 
 # Done
 echo -e "${CYAN} ****************************************************"

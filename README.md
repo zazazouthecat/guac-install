@@ -4,7 +4,7 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
  - Correctif droit root pour RDP
  - Un peu de trad fr
 
-##Script pour Debian 10
+## Script pour Debian 10
 
 ## How to Run:
 

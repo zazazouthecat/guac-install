@@ -513,7 +513,7 @@ mkdir -p /etc/guacamole/extensions/
 # Install guacd (Guacamole-server)
 cd guacamole-server-${GUACVERSION}/
 
-echo -e "${CYAN}Construction de Guacamole-Server avec GCC $( gcc --version | head -n1 | grep -oP '\)\K.*' | awk '{print $1}' ) ${NC}"
+echo -e "${CYAN}Compilation de Guacamole-Server avec GCC $( gcc --version | head -n1 | grep -oP '\)\K.*' | awk '{print $1}' ) ${NC}"
 
 echo -e "${CYAN}Configuration de Guacamole-Server. Ceci peut prendre quelques minutes...${NC}"
 ./configure --with-systemd-dir=/etc/systemd/system  &>> ${LOG}

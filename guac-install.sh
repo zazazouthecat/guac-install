@@ -448,15 +448,17 @@ fi
 echo -e "${GREEN}guacamole-auth-jdbc-${GUACVERSION}.tar.gz Téléchargé${NC}"
 
 # Download Guacamole authentication extensions (LDAP)
-wget --no-check-certificate -q --show-progress -O guacamole-auth-ldap-${GUACVERSION}.tar.gz ${SERVER}/binary/guacamole-auth-ldap-${GUACVERSION}.tar.gz
-if [ $? -ne 0 ]; then
-    echo -e "${RED}Echec de téléchargement de guacamole-auth-ldap-${GUACVERSION}.tar.gz" 1>&2
-    echo -e "${SERVER}/binary/guacamole-auth-ldap-${GUACVERSION}.tar.gz"
-    exit 1
-else
-    tar -xzf guacamole-auth-ldap-${GUACVERSION}.tar.gz
+if [ "${installLDAP}" = true ]; then
+	wget --no-check-certificate -q --show-progress -O guacamole-auth-ldap-${GUACVERSION}.tar.gz ${SERVER}/binary/guacamole-auth-ldap-${GUACVERSION}.tar.gz
+	if [ $? -ne 0 ]; then
+		echo -e "${RED}Echec de téléchargement de guacamole-auth-ldap-${GUACVERSION}.tar.gz" 1>&2
+		echo -e "${SERVER}/binary/guacamole-auth-ldap-${GUACVERSION}.tar.gz"
+		exit 1
+	else
+		tar -xzf guacamole-auth-ldap-${GUACVERSION}.tar.gz
+	fi
+	echo -e "${GREEN}guacamole-auth-ldap-${GUACVERSION}.tar.gz Téléchargé${NC}"
 fi
-echo -e "${GREEN}guacamole-auth-ldap-${GUACVERSION}.tar.gz Téléchargé${NC}"
 
 # Download Guacamole authentication extensions
 
@@ -851,11 +853,8 @@ if [ "${installFail2ban}" = true ]; then
 	sed -i ':a;N;$!ba;s/\[guacamole\]\n\nport/[guacamole]\nenabled = true\nport/g' /etc/fail2ban/jail.local
 	sed -i 's/failregex = /failregex = \bAuthentication attempt from \[<HOST>.*\] for user ".*" failed\.$\n#/g' /etc/fail2ban/filter.d/guacamole.conf
 		
-	echo -e "${CYAN}Démarrage du service Fail2ban & Activation au démarrage...${NC}"
-	sudo service fail2ban restart
-	systemctl enable fail2ban
 			
-	
+	echo
 	echo -e "${CYAN}Ajout de regle, pour empêcher les ip locales d'etre ban ${NC}"
 
 	if [[ -z ${fail2bancustomIp} ]]; then
@@ -872,6 +871,11 @@ if [ "${installFail2ban}" = true ]; then
 		&& read -p "Entrez la plage d'ip a exclure (Ex : 172.16.0.0/16): " fail2banNotBanIpRange
 		sed -i "s|#ignoreip = 127.0.0.1/8 ::1|ignoreip = 127.0.0.1/8 ::1 192.168.0.0/16 ${fail2banNotBanIpRange}|" /etc/fail2ban/jail.local
 	fi
+	
+	echo
+	echo -e "${CYAN}Démarrage du service Fail2ban & Activation au démarrage...${NC}"
+	sudo service fail2ban restart
+	systemctl enable fail2ban
 fi
 echo
 

@@ -844,9 +844,9 @@ if [ "${installFail2ban}" = true ]; then
 		
 	cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
-	sed -i 's/bantime = 10m/bantime = ${fail2ban-banTime}/' /etc/fail2ban/jail.local
-	sed -i 's/findtime = 10m/findtime = ${fail2ban-findTime}/' /etc/fail2ban/jail.local
-	sed -i 's/maxretry = 5/maxretry = ${fail2ban-maxRetry}/' /etc/fail2ban/jail.local
+	sed -i 's/bantime.*=.*/bantime = ${fail2banbanTime}/' /etc/fail2ban/jail.local
+	sed -i 's/findtime.*=.*/findtime = ${fail2banfindTime}/' /etc/fail2ban/jail.local
+	sed -i 's/maxretry.*=.*/maxretry = ${fail2banmaxRetry}/' /etc/fail2ban/jail.local
 		
 	sed -i ':a;N;$!ba;s/\[guacamole\]\n\nport/[guacamole]\nenabled = true\nport/g' /etc/fail2ban/jail.local
 	sed -i 's/failregex = /failregex = \bAuthentication attempt from \[<HOST>.*\] for user ".*" failed\.$\n#/g' /etc/fail2ban/filter.d/guacamole.conf
@@ -858,18 +858,18 @@ if [ "${installFail2ban}" = true ]; then
 	
 	echo -e "${CYAN}Ajout de regle, pour empêcher les ip locales d'etre ban ${NC}"
 
-	if [[ -z ${fail2ban-customIp} ]]; then
+	if [[ -z ${fail2bancustomIp} ]]; then
 			echo -e -n "${CYAN}Voulez-vous configurer une plage d'ip perso ? (O/n): ${NC}"
 			read PROMPT
 			if [[ ${PROMPT} =~ ^[Nn]$ ]]; then
-				fail2ban-customIp=false
+				fail2bancustomIp=false
 			else
-				fail2ban-customIp=true
+				fail2bancustomIp=true
 			fi
 	fi
-	if [ "${fail2ban-customIp}" = true ]; then
-		[ -z "${fail2ban-NotBanIpRange}" ] \
-		&& read -p "Entrez la plage d'ip a exclure (Ex : 172.16.0.0/16): " fail2ban-NotBanIpRange
+	if [ "${fail2bancustomIp}" = true ]; then
+		[ -z "${fail2banNotBanIpRange}" ] \
+		&& read -p "Entrez la plage d'ip a exclure (Ex : 172.16.0.0/16): " fail2banNotBanIpRange
 		sed -i "s|#ignoreip = 127.0.0.1/8 ::1|ignoreip = 127.0.0.1/8 ::1 192.168.0.0/16 ${fail2ban-NotBanIpRange}|" /etc/fail2ban/jail.local
 	fi
 fi

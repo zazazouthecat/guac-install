@@ -821,40 +821,40 @@ fi
 
 # Installation et configuration de fail2ban
 if [ "${installFail2ban}" = true ]; then
-echo -e "${CYAN}Installation du paquet Fail2ban...${NC}"
+	[ -z "${fail2ban-banTime}" ] \
+	&& read -p "Entrez le nombre de minutes ou l'ip sera bannie (Ex : 15m ): " fail2ban-banTime
+	[ -z "${fail2ban-maxRetry}" ] \
+	&& read -p "Entrez le nombre maximum autorisé de tentative de mot de passe (Ex : 5) : " fail2ban-maxRetry
+	[ -z "${fail2ban-findTime}" ] \
+	&& read -p "Entrez le laps de temps autorisé pour faire le maximum de tentative (Ex : 10m , Si 5 essais en < 10min = Ban) : " fail2ban-findTime
+	
+	echo -e "${CYAN}Installation du paquet Fail2ban...${NC}"
 
-apt-get -y install fail2ban &>> ${LOG}
+	apt-get -y install fail2ban &>> ${LOG}
  
 	if [ $? -ne 0 ]; then
 		echo -e "${RED}Echec. Voir ${LOG}${NC}" 1>&2
 		#exit 1 -- useless
 	else
 		echo -e "${GREEN}OK${NC}"
-		echo
-		echo -e "${CYAN}Configuration de Fail2ban pour Guacamole...${NC}"
-		
-		cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
-		
-		[ -z "${fail2ban-banTime}" ] \
-		  && read -p "Entrez le nombre de minutes ou l'ip sera bannie (Ex : 15m ): " fail2ban-banTime
-		[ -z "${fail2ban-maxRetry}" ] \
-		  && read -p "Entrez le nombre maximum autorisé de tentative de mot de passe (Ex : 5) : " fail2ban-maxRetry
-		[ -z "${fail2ban-findTime}" ] \
-		  && read -p "Entrez le laps de temps autorisé pour faire le maximum de tentative (Ex : 10m , Si 5 essais en < 10min = Ban) : " fail2ban-findTime
-
-		sed -i 's/bantime = 10m/bantime = ${fail2ban-banTime}/' /etc/fail2ban/jail.local
-		sed -i 's/findtime = 10m/findtime = ${fail2ban-findTime}/' /etc/fail2ban/jail.local
-		sed -i 's/maxretry = 5/maxretry = ${fail2ban-maxRetry}/' /etc/fail2ban/jail.local
-		
-		sed -i ':a;N;$!ba;s/\[guacamole\]\n\nport/[guacamole]\nenabled = true\nport/g' /etc/fail2ban/jail.local
-		sed -i 's/failregex = /failregex = \bAuthentication attempt from \[<HOST>.*\] for user ".*" failed\.$\n#/g' /etc/fail2ban/filter.d/guacamole.conf
-		
-		echo -e "${CYAN}Démarrage du service Fail2ban & Activation au démarrage...${NC}"
-		sudo service fail2ban-client restart
-		systemctl enable fail2ban
-			
 	fi
 	echo
+	
+	echo -e "${CYAN}Configuration de Fail2ban pour Guacamole...${NC}"
+		
+	cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+
+	sed -i 's/bantime = 10m/bantime = ${fail2ban-banTime}/' /etc/fail2ban/jail.local
+	sed -i 's/findtime = 10m/findtime = ${fail2ban-findTime}/' /etc/fail2ban/jail.local
+	sed -i 's/maxretry = 5/maxretry = ${fail2ban-maxRetry}/' /etc/fail2ban/jail.local
+		
+	sed -i ':a;N;$!ba;s/\[guacamole\]\n\nport/[guacamole]\nenabled = true\nport/g' /etc/fail2ban/jail.local
+	sed -i 's/failregex = /failregex = \bAuthentication attempt from \[<HOST>.*\] for user ".*" failed\.$\n#/g' /etc/fail2ban/filter.d/guacamole.conf
+		
+	echo -e "${CYAN}Démarrage du service Fail2ban & Activation au démarrage...${NC}"
+	sudo service fail2ban restart
+	systemctl enable fail2ban
+			
 	
 	echo -e "${CYAN}Ajout de regle, pour empêcher les ip locales d'etre ban ${NC}"
 

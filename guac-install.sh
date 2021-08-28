@@ -861,7 +861,7 @@ if [ "${installFail2ban}" = true ]; then
 	echo "maxretry=${fail2banmaxRetry}" >> /etc/fail2ban/jail.d/guacamole.conf
 	
 	
-	sed -i 's/failregex = /failregex = \\bAuthentication attempt from \\[<HOST>.*\\] for user ".*" failed\\.$\n#/g' /etc/fail2ban/filter.d/guacamole.conf
+	sed -i 's/failregex = /failregex = \\bAuthentication attempt from <HOST> for user ".*" failed\\.$\n#/g' /etc/fail2ban/filter.d/guacamole.conf
 		
 		#'s/failregex = /failregex = ^.*Authentication attempt from <HOST> for user "[^"]*" failed\.$\n#/g'
 			

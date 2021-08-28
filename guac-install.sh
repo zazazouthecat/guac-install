@@ -831,11 +831,11 @@ fi
 # Installation et configuration de fail2ban
 if [ "${installFail2ban}" = true ]; then
 	[ -z "${fail2banbanTime}" ] \
-	&& read -p "Entrez le nombre de minutes ou l'ip sera bannie (Ex : 15m ): " fail2banbanTime
+	&& read -p "Entrez le nombre de minutes ou l'ip sera bannie (Ex : 15 ): " fail2banbanTime*60
 	[ -z "${fail2banmaxRetry}" ] \
 	&& read -p "Entrez le nombre maximum autorisé de tentative de mot de passe (Ex : 5) : " fail2banmaxRetry
 	[ -z "${fail2banfindTime}" ] \
-	&& read -p "Entrez le laps de temps autorisé pour faire le maximum de tentative (Ex : 10m , Si 5 essais en < 10min = Ban) : " fail2banfindTime
+	&& read -p "Entrez le laps de temps autorisé pour faire le maximum de tentative (Ex : 10c , Si 5 essais en < 10min = Ban) : " fail2banfindTime*60
 	
 	echo -e "${CYAN}Installation du paquet Fail2ban & ufw...${NC}"
 
@@ -870,13 +870,15 @@ if [ "${installFail2ban}" = true ]; then
 		#'s/failregex = /failregex = ^.*Authentication attempt from <HOST> for user "[^"]*" failed\.$\n#/g'
 			
 	echo
-	echo -e "${CYAN}Ajout de regle, pour empêcher les ip locales d'etre ban ${NC}"
+	echo -e "${CYAN}Ajout de regle, pour empêcher les ip locales d'être bannies ${NC}"
 
 	if [[ -z ${fail2bancustomIp} ]]; then
-			echo -e -n "${CYAN}Voulez-vous configurer une plage d'ip perso ? (O/n): ${NC}"
+			echo -e -n "${CYAN}Voulez-vous configurer une plage d'ip perso en plus de celle par défaut ? (O/n): ${NC}"
 			read PROMPT
 			if [[ ${PROMPT} =~ ^[Nn]$ ]]; then
 				fail2bancustomIp=false
+				echo -e "${YELLOW} Ajout de la regle par defaut (127.0.0.1/8 & 192.168.0.0/16)"
+				echo "ignoreip=127.0.0.1/8 192.168.0.0/16" >> /etc/fail2ban/jail.d/guacamole.conf
 			else
 				fail2bancustomIp=true
 			fi
@@ -885,6 +887,7 @@ if [ "${installFail2ban}" = true ]; then
 		[ -z "${fail2banNotBanIpRange}" ] \
 		&& read -p "Entrez la plage d'ip a exclure (Ex : 172.16.0.0/16): " fail2banNotBanIpRange
 		echo "ignoreip=127.0.0.1/8 192.168.0.0/16 ${fail2banNotBanIpRange}" >> /etc/fail2ban/jail.d/guacamole.conf
+		echo -e "${YELLOW} Ajout de la regle personalisée (127.0.0.1/8 & 192.168.0.0/16 & ${fail2banNotBanIpRange}"
 		#sed -i "s|#ignoreip = 127.0.0.1/8 ::1|ignoreip = 127.0.0.1/8 ::1 192.168.0.0/16 ${fail2banNotBanIpRange}|" /etc/fail2ban/jail.local
 	fi
 	
@@ -898,6 +901,8 @@ if [ "${installFail2ban}" = true ]; then
 	sudo service ufw restart
 	systemctl enable ufw
 	sudo ufw --force enable
+	#On autorise les flux sur le port 8080 dans ufw
+	sudo ufw allow 8080
 fi
 echo
 

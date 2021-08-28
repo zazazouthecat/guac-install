@@ -883,7 +883,7 @@ if [ "${installFail2ban}" = true ]; then
 			read PROMPT
 			if [[ ${PROMPT} =~ ^[Nn]$ ]]; then
 				fail2bancustomIp=false
-				echo -e "${YELLOW} Ajout de la regle par defaut (127.0.0.1/8 & 192.168.0.0/16)"
+				echo -e "${BLEU} Ajout de la regle par defaut \033[1;33m(127.0.0.1/8 & 192.168.0.0/16)\033[0m"
 				echo "ignoreip=127.0.0.1/8 192.168.0.0/16" >> /etc/fail2ban/jail.d/guacamole.conf
 			else
 				fail2bancustomIp=true
@@ -893,7 +893,7 @@ if [ "${installFail2ban}" = true ]; then
 		[ -z "${fail2banNotBanIpRange}" ] \
 		&& read -p "Entrez la plage d'ip a exclure (Ex : 172.16.0.0/16): " fail2banNotBanIpRange
 		echo "ignoreip=127.0.0.1/8 192.168.0.0/16 ${fail2banNotBanIpRange}" >> /etc/fail2ban/jail.d/guacamole.conf
-		echo -e "${BLUE} Ajout de la regle personalisée (127.0.0.1/8 & 192.168.0.0/16 & ${fail2banNotBanIpRange}"
+		echo -e "${BLUE} Ajout de la regle personalisée \033[1;33m(127.0.0.1/8 & 192.168.0.0/16 & ${fail2banNotBanIpRange}\033[0m"
 		#sed -i "s|#ignoreip = 127.0.0.1/8 ::1|ignoreip = 127.0.0.1/8 ::1 192.168.0.0/16 ${fail2banNotBanIpRange}|" /etc/fail2ban/jail.local
 	fi
 	
@@ -912,10 +912,10 @@ if [ "${installFail2ban}" = true ]; then
 	sudo ufw allow 8080
 	echo
 	echo -e "${YELLOW} Autorisation des flux sur le port 22 dans ufw"
-	echo -e "${BLUE} Autorisation par defaut de 192.168.0.0/16 port 22"
+	echo -e "${BLUE} Autorisation par defaut de \033[1;33m192.168.0.0/16\033[0m port 22"
 	sudo ufw allow from 192.168.0.0/16 to any port 22
 	if [ "${fail2bancustomIp}" = true ]; then
-		echo -e "${BLUE} Autorisation personalisée de ${fail2banNotBanIpRange} port 22"
+		echo -e "${BLUE} Autorisation personalisée de \033[1;33m${fail2banNotBanIpRange}\033[0m port 22"
 		sudo ufw allow from ${fail2banNotBanIpRange} to any port 22
 	fi
 fi
@@ -944,4 +944,4 @@ echo -e "${RED} \033[1m /!\ ***N'OUBLIEZ PAS DE CHANGER LE MOT DE PASSE !!! *** 
 echo
 echo -e "${CYAN} ****************************************************"
 echo -e "${CYAN} ****************************************************"
-echo -e "${CYAN} ****************************************************"
+echo -e "${CYAN} ****************************************************\033[0m"

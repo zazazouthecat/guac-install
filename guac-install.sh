@@ -13,7 +13,7 @@ if ! [ $( id -u ) = 0 ]; then
     echo "Merci de lancer ce script en root ou sudo" 1>&2
     exit 1
 else
-	echo -e "${YELLOW} Ajout de Root au sudoers"
+	echo -e "Ajout de Root au sudoers"
 	sudo usermod -aG sudo root
 	echo
 fi
@@ -893,7 +893,7 @@ if [ "${installFail2ban}" = true ]; then
 		[ -z "${fail2banNotBanIpRange}" ] \
 		&& read -p "Entrez la plage d'ip a exclure (Ex : 172.16.0.0/16): " fail2banNotBanIpRange
 		echo "ignoreip=127.0.0.1/8 192.168.0.0/16 ${fail2banNotBanIpRange}" >> /etc/fail2ban/jail.d/guacamole.conf
-		echo -e "${YELLOW} Ajout de la regle personalisée (127.0.0.1/8 & 192.168.0.0/16 & ${fail2banNotBanIpRange}"
+		echo -e "${BLUE} Ajout de la regle personalisée (127.0.0.1/8 & 192.168.0.0/16 & ${fail2banNotBanIpRange}"
 		#sed -i "s|#ignoreip = 127.0.0.1/8 ::1|ignoreip = 127.0.0.1/8 ::1 192.168.0.0/16 ${fail2banNotBanIpRange}|" /etc/fail2ban/jail.local
 	fi
 	
@@ -908,8 +908,16 @@ if [ "${installFail2ban}" = true ]; then
 	systemctl enable ufw
 	sudo ufw --force enable
 	#On autorise les flux sur le port 8080 dans ufw
-	echo -e "${YELLOW} Autorisation des dlux sur le port 8080 dans ufw"
+	echo -e "${YELLOW} Autorisation des flux sur le port 8080 dans ufw"
 	sudo ufw allow 8080
+	echo
+	echo -e "${YELLOW} Autorisation des flux sur le port 22 dans ufw"
+	echo -e "${BLUE} Autorisation par defaut de 192.168.0.0/16 port 22"
+	sudo ufw allow from 192.168.0.0/16 to any port 22
+	if [ "${fail2bancustomIp}" = true ]; then
+		echo -e "${BLUE} Autorisation personalisée de ${fail2banNotBanIpRange} port 22"
+		sudo ufw allow from ${fail2banNotBanIpRange} to any port 22
+	fi
 fi
 echo
 

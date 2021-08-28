@@ -17,6 +17,6 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
 
 `chmod +x guac-install.sh`
 
-### Exéctuer le script en root t:
+### Exéctuer le script en root:
 
 `./guac-install.sh`

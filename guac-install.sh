@@ -340,6 +340,7 @@ elif [[ "${NAME}" == *"Debian"* ]] || [[ "${NAME}" == *"Raspbian GNU/Linux"* ]] 
     else
         MYSQL="default-mysql-client"
     fi
+	
 	sudo bash -c 'echo "deb http://deb.debian.org/debian buster-backports main" >> /etc/apt/sources.list.d/backports.list'
 	sudo apt update
 	sudo apt -y -t buster-backports install freerdp2-dev libpulse-dev
@@ -860,8 +861,9 @@ if [ "${installFail2ban}" = true ]; then
 	echo "maxretry=${fail2banmaxRetry}" >> /etc/fail2ban/jail.d/guacamole.conf
 	
 	
-	sed -i 's/failregex = /failregex = \\bAuthentication attempt from \\[<HOST>.*\\] for user ".*" failed\\.$\#' /etc/fail2ban/filter.d/guacamole.conf
+	sed -i 's/failregex = /failregex = \\bAuthentication attempt from \\[<HOST>.*\\] for user ".*" failed\\.$\n#/g' /etc/fail2ban/filter.d/guacamole.conf
 		
+		#'s/failregex = /failregex = ^.*Authentication attempt from <HOST> for user "[^"]*" failed\.$\n#/g'
 			
 	echo
 	echo -e "${CYAN}Ajout de regle, pour empêcher les ip locales d'etre ban ${NC}"

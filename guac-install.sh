@@ -832,10 +832,10 @@ if [ "${installFail2ban}" = true ]; then
 	[ -z "${fail2banfindTime}" ] \
 	&& read -p "Entrez le laps de temps autorisé pour faire le maximum de tentative (Ex : 10m , Si 5 essais en < 10min = Ban) : " fail2banfindTime
 	
-	echo -e "${CYAN}Installation du paquet Fail2ban...${NC}"
+	echo -e "${CYAN}Installation du paquet Fail2ban & ufw...${NC}"
 
 	apt-get -y install fail2ban &>> ${LOG}
- 
+	apt-get -y install ufw &>> ${LOG}
 	if [ $? -ne 0 ]; then
 		echo -e "${RED}Echec. Voir ${LOG}${NC}" 1>&2
 		#exit 1 -- useless
@@ -854,12 +854,13 @@ if [ "${installFail2ban}" = true ]; then
 	#sed -i ':a;N;$!ba;s/\[guacamole\]\n\nport/[guacamole]\nenabled = true\nport/g' /etc/fail2ban/jail.local
 	echo "[guacamole]" >> /etc/fail2ban/jail.d/guacamole.conf
     echo "enabled = true" >> /etc/fail2ban/jail.d/guacamole.conf
+	echo "banaction=ufw" >> /etc/fail2ban/jail.d/guacamole.conf
     echo "bantime=${fail2banbanTime}" >> /etc/fail2ban/jail.d/guacamole.conf
     echo "findtime=${fail2banfindTime}" >> /etc/fail2ban/jail.d/guacamole.conf
 	echo "maxretry=${fail2banmaxRetry}" >> /etc/fail2ban/jail.d/guacamole.conf
 	
 	
-	sed -i 's/failregex = /failregex = \\bAuthentication attempt from \\[<HOST>.*\\] for user ".*" failed\\.$/g' /etc/fail2ban/filter.d/guacamole.conf
+	sed -i 's/failregex = /failregex = \\bAuthentication attempt from \\[<HOST>.*\\] for user ".*" failed\\.$\#' /etc/fail2ban/filter.d/guacamole.conf
 		
 			
 	echo
@@ -885,6 +886,12 @@ if [ "${installFail2ban}" = true ]; then
 	echo -e "${CYAN}Démarrage du service Fail2ban & Activation au démarrage...${NC}"
 	sudo service fail2ban restart
 	systemctl enable fail2ban
+	
+	echo
+	echo -e "${CYAN}Démarrage du service ufw & Activation au démarrage...${NC}"
+	sudo service ufw restart
+	systemctl enable ufw
+	sudo ufw --force enable
 fi
 echo
 

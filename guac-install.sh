@@ -10,8 +10,12 @@
 
 # Check if user is root or sudo
 if ! [ $( id -u ) = 0 ]; then
-    echo "Merci de lancer ce script en sudo" 1>&2
+    echo "Merci de lancer ce script en root ou sudo" 1>&2
     exit 1
+else
+	echo -e "${YELLOW} Ajout de Root au sudoers"
+	sudo usermod -aG sudo root
+	echo
 fi
 
 # Check to see if any old files left over
@@ -861,7 +865,7 @@ if [ "${installFail2ban}" = true ]; then
 	echo "maxretry=${fail2banmaxRetry}" >> /etc/fail2ban/jail.d/guacamole.conf
 	
 	
-	sed -i 's/failregex = /failregex = \\bAuthentication attempt from <HOST> for user ".*" failed\\.$\n#/g' /etc/fail2ban/filter.d/guacamole.conf
+	sed -i 's/failregex = /failregex = \\bAuthentication attempt from \\[?<HOST>.*\\]? for user ".*" failed\\.$\n#/g' /etc/fail2ban/filter.d/guacamole.conf
 		
 		#'s/failregex = /failregex = ^.*Authentication attempt from <HOST> for user "[^"]*" failed\.$\n#/g'
 			

@@ -74,6 +74,8 @@ fail2banNotBanIpRange=""
 
 #Prez !
 clear
+echo
+echo
 echo -e "${YELLOW} |'-._/\_.-'| ***************************************** |'-._/\_.-'| "
 echo -e "${YELLOW} |    ||    | ***************************************** |    ||    | "
 echo -e "${YELLOW} |___o()o___| ***************************************** |___o()o___| "
@@ -831,11 +833,11 @@ fi
 # Installation et configuration de fail2ban
 if [ "${installFail2ban}" = true ]; then
 	[ -z "${fail2banbanTime}" ] \
-	&& read -p "Entrez le nombre de minutes ou l'ip sera bannie (Ex : 15 ): " fail2banbanTime*60
+	&& read -p "Entrez le nombre de minutes ou l'ip sera bannie (Ex : 15 ): " fail2banbanTime
 	[ -z "${fail2banmaxRetry}" ] \
 	&& read -p "Entrez le nombre maximum autorisé de tentative de mot de passe (Ex : 5) : " fail2banmaxRetry
 	[ -z "${fail2banfindTime}" ] \
-	&& read -p "Entrez le laps de temps autorisé pour faire le maximum de tentative (Ex : 10c , Si 5 essais en < 10min = Ban) : " fail2banfindTime*60
+	&& read -p "Entrez le laps de temps autorisé pour faire le maximum de tentative (Ex : 10c , Si 5 essais en < 10min = Ban) : " fail2banfindTime
 	
 	echo -e "${CYAN}Installation du paquet Fail2ban & ufw...${NC}"
 
@@ -860,7 +862,11 @@ if [ "${installFail2ban}" = true ]; then
 	echo "[guacamole]" >> /etc/fail2ban/jail.d/guacamole.conf
     echo "enabled = true" >> /etc/fail2ban/jail.d/guacamole.conf
 	echo "banaction=ufw" >> /etc/fail2ban/jail.d/guacamole.conf
+	#On transforme les minustes de fail2banbanTime en secondes
+	fail2banbanTime=fail2banbanTime*60
     echo "bantime=${fail2banbanTime}" >> /etc/fail2ban/jail.d/guacamole.conf
+	#On transforme les minustes de fail2banfindTime en secondes
+	fail2banfindTime=fail2banfindTime*60
     echo "findtime=${fail2banfindTime}" >> /etc/fail2ban/jail.d/guacamole.conf
 	echo "maxretry=${fail2banmaxRetry}" >> /etc/fail2ban/jail.d/guacamole.conf
 	
@@ -902,6 +908,7 @@ if [ "${installFail2ban}" = true ]; then
 	systemctl enable ufw
 	sudo ufw --force enable
 	#On autorise les flux sur le port 8080 dans ufw
+	echo -e "${YELLOW} Autorisation des dlux sur le port 8080 dans ufw"
 	sudo ufw allow 8080
 fi
 echo

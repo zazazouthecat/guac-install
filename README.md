@@ -72,4 +72,6 @@ il faudra exploiter la commande `guacenc` pour encoder la video
 
 il faudra exploiter la commande `guaclog` pour encoder les frappes clavier
 
-### 🔹 Exemple D'enregistrement
+### 🔹 Exemple d'enregistrement
+![alt text](https://github.com/zazazouthecat/guac-install/blob/main/rec_guac.png?raw=true)
+

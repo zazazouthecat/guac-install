@@ -6,9 +6,9 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
  - Un peu de trad fr
 
 ## Linux distribution 
-[OK] Debian 10
+✅ Debian 10 
 
-[OK] Ubuntu 20
+✅ Ubuntu 20
 
 ### Télécharger directement depuis :
 

@@ -22,6 +22,7 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
 
 # Exemple connexion RDP
 
+![alt text](https://github.com/zazazouthecat/guac-install/blob/main/rdp_guac.png?raw=true)
 
 # Exemple connexion SSH
 
@@ -35,7 +36,7 @@ Apres avoir installé le module LDAP (demandé lors de l'installation)
 - Donnez vous les droits d'administrations total
 - Enfin connectez vous avec votre compte AD (Vous allez récupérer l'administration de guacamole + la gestion des comptes de votre AD)
 
-### Exemple
+### Exemple AD
 ![alt text](https://github.com/zazazouthecat/guac-install/blob/main/ldap_guac.png?raw=true)
 
 ### Extrait de /etc/guacamole/guacamole.properties

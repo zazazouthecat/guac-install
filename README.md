@@ -1,4 +1,4 @@
-# guac-install
+# 🛡️ guac-install
 Script basé sur les sources https://github.com/MysticRyuujin/guac-install
  - Ajout Fail2Ban & ufw
  - Ajout LDAP

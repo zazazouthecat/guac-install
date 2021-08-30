@@ -7,8 +7,6 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
 
 ## Script pour Debian 10
 
-## How to Run:
-
 ### Télécharger directement depuis :
 
 `wget https://git.io/JEz9u -O guac-install.sh`

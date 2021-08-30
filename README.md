@@ -20,3 +20,12 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
 ### Exéctuer le script en root:
 
 `./guac-install.sh`
+
+
+#### Fonctionnement LDAP ####
+
+Apres avoir installé le module LDAP (demandé lors de l'installation) 
+- Se connecte avec le compte admin local créé (guacadmin/guacadmin)
+- Créez vous un compte local dans guacamole avec le meme identifiant que votre compte AD, mais avec un mot de passe différent.
+- Donnez vous les droits d'administrations total
+- Enfin connectez vous avec votre compte AD (Vous allez récupérer l'administration de guacamole + la gestion des comptes de votre AD)

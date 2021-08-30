@@ -75,3 +75,8 @@ il faudra exploiter la commande `guaclog` pour encoder les frappes clavier
 ### 🔹 Exemple d'enregistrement
 ![alt text](https://github.com/zazazouthecat/guac-install/blob/main/rec_guac.png?raw=true)
 
+### 🔹 Exemple d'encodage vidéo & frappes clavier
+
+Encodage de l'enregisrement **/log/bastion/MON_SRV/MON_SRV_RECORD_johndoe_20210827_105342** en résolution 1920x1080
+`guacenc -s 1920x1080 -f /log/bastion/MON_SRV/MON_SRV_RECORD_johndoe_20210827_105342`
+

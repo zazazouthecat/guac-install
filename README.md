@@ -33,11 +33,11 @@ Apres avoir installé le module LDAP (demandé lors de l'installation)
 ![alt text](https://github.com/zazazouthecat/guac-install/blob/ldap_guac.png?raw=true)
 
 ### Extrait de /etc/guacamole/guacamole.properties
-
-`ldap-hostname: JohnDoe.local`
-`ldap-port: 389`
-`ldap-user-base-dn: OU=Accounts_Users,DC=JohnDoe,DC=local`
-`ldap-username-attribute: sAMAccountName`
-`ldap-search-bind-dn: CN=ad_binder,OU=Accounts_Service,DC=JohnDoe,DC=local`
-`ldap-search-bind-password:myverystrongpassword`
-`ldap-encryption-method: none`
+```
+ldap-hostname: JohnDoe.local
+ldap-port: 389
+ldap-user-base-dn: OU=Accounts_Users,DC=JohnDoe,DC=local
+ldap-username-attribute: sAMAccountName
+ldap-search-bind-dn: CN=ad_binder,OU=Accounts_Service,DC=JohnDoe,DC=local
+ldap-search-bind-password:myverystrongpassword
+ldap-encryption-method: none```

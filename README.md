@@ -20,6 +20,13 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
 `./guac-install.sh`
 
 
+# Exemple connexion RDP
+
+
+# Exemple connexion SSH
+
+
+
 # Fonctionnement LDAP
 
 Apres avoir installé le module LDAP (demandé lors de l'installation) 

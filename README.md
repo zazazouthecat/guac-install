@@ -57,3 +57,5 @@ ldap-search-bind-dn: CN=ad_binder,OU=Accounts_Service,DC=JohnDoe,DC=local
 ldap-search-bind-password:myverystrongpassword
 ldap-encryption-method: none
 ```
+
+# 🛑 Enregistrement (Video & Keylogger)

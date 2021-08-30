@@ -67,6 +67,6 @@ ${GUAC_CLIENT_HOSTNAME}   --- Le nom d'hôte de l'utilisateur actuel
 ```
 
 Le serveur n'enregistre pas la video en format lisible directement.
-il faudra exploiter la commande `guacenc pour encoder la video 
+il faudra exploiter la commande `guacenc` pour encoder la video 
 
 ### 🔹 Exemple D'enregistrement

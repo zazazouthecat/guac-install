@@ -10,6 +10,8 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
 
 ✅ Ubuntu 20
 
+# 🚩 Installation 🚩
+
 ### Télécharger directement depuis :
 
 `wget https://git.io/JEz9u -O guac-install.sh`

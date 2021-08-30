@@ -5,12 +5,8 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
  - Correctif droit root pour RDP
  - Un peu de trad fr
 
-## Linux distribution 
-✅ Debian 10 
-
-❌ Debian 11
-
-✅ Ubuntu 20
+## 🐧 Linux distribution 
+✅ Debian 10  ❌ Debian 11  ✅ Ubuntu 20
 
 # 🚩 Installation 🚩
 

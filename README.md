@@ -20,11 +20,11 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
 `./guac-install.sh`
 
 
-# Exemple connexion RDP
+### Exemple connexion RDP
 
 ![alt text](https://github.com/zazazouthecat/guac-install/blob/main/rdp_guac.png?raw=true)
 
-# Exemple connexion SSH
+### Exemple connexion SSH
 
 ![alt text](https://github.com/zazazouthecat/guac-install/blob/main/ssh_guac.png?raw=true)
 

@@ -29,4 +29,15 @@ Apres avoir installé le module LDAP (demandé lors de l'installation)
 - Créez vous un compte local dans guacamole avec le meme identifiant que votre compte AD, mais avec un mot de passe différent.
 - Donnez vous les droits d'administrations total
 - Enfin connectez vous avec votre compte AD (Vous allez récupérer l'administration de guacamole + la gestion des comptes de votre AD)
+- 
 ![alt text](https://github.com/zazazouthecat/guac-install/blob/[branch]/image.jpg?raw=true)
+
+### Extrait de /etc/guacamole/guacamole.properties
+
+'ldap-hostname: JohnDoe.local'
+'ldap-port: 389'
+'ldap-user-base-dn: OU=Accounts_Users,DC=JohnDoe,DC=local'
+'ldap-username-attribute: sAMAccountName'
+'ldap-search-bind-dn: CN=ad_binder,OU=Accounts_Service,DC=JohnDoe,DC=local'
+'ldap-search-bind-password:myverystrongpassword'
+'ldap-encryption-method: none'

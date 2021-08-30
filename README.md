@@ -57,9 +57,16 @@ ldap-encryption-method: none
 ```
 
 # 🛑 Enregistrement (Video & Keylogger)
-## Variables expoiltables
+## Variables exploitables
 ```
 ${GUAC_USERNAME}   --- Nom de l'utilisateur connecté
-${GUAC_DATE}   --- Date du jour
+${GUAC_DATE}   --- Date actuelle
 ${GUAC_TIME}   --- Heure actuelle
+${GUAC_CLIENT_ADDRESS}   --- L'adresse IPv4 ou IPv6 de l'utilisateur actue
+${GUAC_CLIENT_HOSTNAME}   --- Le nom d'hôte de l'utilisateur actuel
 ```
+
+Le serveur n'enregistre pas la video en format lisible directement.
+il faudra exploiter la commande `guacenc pour encoder la video 
+
+### 🔹 Exemple D'enregistrement

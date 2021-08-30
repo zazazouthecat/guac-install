@@ -22,7 +22,7 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
 `./guac-install.sh`
 
 
-#### Fonctionnement LDAP
+# Fonctionnement LDAP
 
 Apres avoir installé le module LDAP (demandé lors de l'installation) 
 - Se connecte avec le compte admin local créé (guacadmin/guacadmin)

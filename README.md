@@ -66,7 +66,8 @@ ${GUAC_CLIENT_ADDRESS}   --- L'adresse IPv4 ou IPv6 de l'utilisateur actue
 ${GUAC_CLIENT_HOSTNAME}   --- Le nom d'hôte de l'utilisateur actuel
 ```
 
-Le serveur n'enregistre pas la video en format lisible directement.
+Le serveur n'enregistre pas la video en format lisible directement (protocol dumps).
 il faudra exploiter la commande `guacenc` pour encoder la video 
+il faudra exploiter la commande `guaclog` pour encoder les frappes clavier
 
 ### 🔹 Exemple D'enregistrement

@@ -26,6 +26,7 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
 
 # Exemple connexion SSH
 
+![alt text](https://github.com/zazazouthecat/guac-install/blob/main/ssh_guac.png?raw=true)
 
 
 # Fonctionnement LDAP

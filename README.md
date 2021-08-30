@@ -59,3 +59,7 @@ ldap-encryption-method: none
 ```
 
 # 🛑 Enregistrement (Video & Keylogger)
+## Variables expoiltables
+${GUAC_USERNAME}   --- Nom de l'utilisateur connecté
+${GUAC_DATE}   --- Date du jour
+${GUAC_TIME}   --- Heure actuelle

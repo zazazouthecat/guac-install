@@ -8,7 +8,7 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
 ## Linux distribution 
 ✅ Debian 10 
 
-🛑 Debian 11
+❌ Debian 11
 
 ✅ Ubuntu 20
 

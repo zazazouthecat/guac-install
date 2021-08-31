@@ -105,6 +105,8 @@ Encodage des frappes au clavier **/log/bastion/MON_SRV/MON_SRV_RECORD_johndoe_20
 
 Un dossier portant le nom de l'utilisateur (ici admin) sera créé dans le dossier /draganddrop/
 
+ℹ️ Vous pouvez a présent faire un drag and drop de vos fichiers ils seront automatiquements upload sur le lecteur reseau
+
 ⚠️ **Pensez à purger le dossier régulierement par une tache plannifée (crontab)**
 
 `sudo rm /draganddrop/* -R`

@@ -107,7 +107,7 @@ branding/
 │   └── logo-placeholder.png
 ├── translations/
 │   ├── fr.json
-└── guac-manifest.jso
+└── guac-manifest.json
 ```
 
 Le fichier `branding.jar` peut etre édité avec 7zip. (https://github.com/zazazouthecat/guac-install/raw/main/branding.jar)

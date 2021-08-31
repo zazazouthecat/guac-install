@@ -96,3 +96,26 @@ Le fichier `branding.jar` peut etre édité avec 7zip.
 Pour mettre votre logo  : - Remplacer le fichier `images\logo-placeholder.png`
 
 Pour mettre votre propre nom  : - Editer avec bloc-note le fichier `translations\fr.json`
+
+### 🔹 Exemple fichier fr.json
+
+```
+{
+    "NAME" : "Français",
+		
+    "APP":{
+	
+	"NAME" : "BASTION THE NERD CAT"
+
+	  },
+	  
+	"CLIENT": {
+		  	
+	"TEXT_CLIENT_STATUS_CONNECTING": "Connexion...",
+    "TEXT_CLIENT_STATUS_DISCONNECTED": "Vous avez été deconnecté.",
+    "TEXT_CLIENT_STATUS_UNSTABLE": "La connexion au serveur semble instable.",
+	"TEXT_CLIENT_STATUS_WAITING": "Connexion, En attente de réponse..."
+		  
+	  }
+}
+```

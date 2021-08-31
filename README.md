@@ -105,7 +105,9 @@ Pour mettre votre logo  : - Remplacez le fichier `images\logo-placeholder.png`
 
 Pour mettre votre propre nom  : - Editez avec bloc-note le fichier `translations\fr.json`, apres le champ `"NAME" : ` indiquez le nom que vous souhaitez entre **guillemet**
 
-### 🔹 Exemple fichier fr.json
+**Redémarrez le service Tomcat et Guacamole pour que les modifications soient prises en compte**
+
+#### 🔹 Exemple fichier fr.json
 
 ```
 {

@@ -88,18 +88,18 @@ Encode des frappes au clavier **/log/bastion/MON_SRV/MON_SRV_RECORD_johndoe_2021
 # ✏️ Customisation 
 Personalisation du nom et du logo de la page d'acceuil de Guacamole
 
+### 🔹 Fichier de personnalisation de l'interface
 Il faut placer le fichier `branding.jar` dans `/etc/guacamole/extensions`
 
 `wget https://git.io/JES4i -O /etc/guacamole/extensions/branding.jar`
 
 Redémarrez le service Tomcat et Guacamole pour que les modifications soient prises en compte
+
 `sudo service tomcat9 restart && sudo service guacd restart`
 
-https://github.com/zazazouthecat/guac-install/raw/main/branding.jar
 
 
-
-Le fichier `branding.jar` peut etre édité avec 7zip.
+Le fichier `branding.jar` peut etre édité avec 7zip. (https://github.com/zazazouthecat/guac-install/raw/main/branding.jar)
 
 Pour mettre votre logo  : - Remplacez le fichier `images\logo-placeholder.png`
 

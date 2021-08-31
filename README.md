@@ -81,7 +81,7 @@ Encodage de l'enregisrement video **/log/bastion/MON_SRV/MON_SRV_RECORD_johndoe_
 
 `guacenc -s 1920x1080 -f /log/bastion/MON_SRV/MON_SRV_RECORD_johndoe_20210827_105342`
 
-Encode des frappes au clavier **/log/bastion/MON_SRV/MON_SRV_RECORD_johndoe_20210827_105342**
+Encodage des frappes au clavier **/log/bastion/MON_SRV/MON_SRV_RECORD_johndoe_20210827_105342**
 
 `guaclog -f /log/bastion/MON_SRV/MON_SRV_RECORD_johndoe_20210827_105342`
 

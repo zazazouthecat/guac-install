@@ -56,6 +56,9 @@ ldap-search-bind-password:myverystrongpassword
 ldap-encryption-method: none
 ```
 
+# 🗃️ Drag And Drop
+
+
 # 🛑 Enregistrement (Video & Keylogger)
 ## Variables exploitables
 ```

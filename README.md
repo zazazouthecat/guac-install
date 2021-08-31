@@ -13,7 +13,7 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
 
 #
 
-# 🚩 Installation 🚩
+# 🏁 Installation 🏁
 
 ### Télécharger directement depuis :
 

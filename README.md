@@ -95,7 +95,7 @@ Le fichier `branding.jar` peut etre édité avec 7zip.
 
 Pour mettre votre logo  : - Remplacer le fichier `images\logo-placeholder.png`
 
-Pour mettre votre propre nom  : - Editer avec bloc-note le fichier `translations\fr.json`
+Pour mettre votre propre nom  : - Editer avec bloc-note le fichier `translations\fr.json`, apres le champ `"NAME" : ` indiquez le nom que vous souhaitez entre **guillemet**
 
 ### 🔹 Exemple fichier fr.json
 

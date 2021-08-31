@@ -837,7 +837,7 @@ if [ "${installFail2ban}" = true ]; then
 	[ -z "${fail2banmaxRetry}" ] \
 	&& read -p "Entrez le nombre maximum autorisé de tentative de mot de passe (Ex : 5) : " fail2banmaxRetry
 	[ -z "${fail2banfindTime}" ] \
-	&& read -p "Entrez le laps de temps autorisé pour faire le maximum de tentative (Ex : 10c , Si 5 essais en < 10min = Ban) : " fail2banfindTime
+	&& read -p "Entrez le laps de temps autorisé pour faire le maximum de tentative (Ex : 10 , Si 5 essais en < 10min = Ban) : " fail2banfindTime
 	
 	echo -e "${CYAN}Installation du paquet Fail2ban & ufw...${NC}"
 

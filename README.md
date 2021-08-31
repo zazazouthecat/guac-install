@@ -97,7 +97,7 @@ Redémarrez le service Tomcat et Guacamole pour que les modifications soient pri
 
 `sudo service tomcat9 restart && sudo service guacd restart`
 
-
+### 🔹 Modification du fichier branding.jar
 
 Le fichier `branding.jar` peut etre édité avec 7zip. (https://github.com/zazazouthecat/guac-install/raw/main/branding.jar)
 

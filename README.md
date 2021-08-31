@@ -7,6 +7,7 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
  - Correctif droit root pour RDP
  - Un peu de trad fr
 
+
 ## 🐧 Linux distribution 
 ✅ Debian 10  ❌ Debian 11  ✅ Ubuntu 20
 
@@ -56,6 +57,7 @@ ldap-search-bind-password:myverystrongpassword
 ldap-encryption-method: none
 ```
 
+
 # 🛑 Enregistrement (Video & Keylogger)
 ## Variables exploitables
 ```
@@ -86,19 +88,21 @@ Encodage des frappes au clavier **/log/bastion/MON_SRV/MON_SRV_RECORD_johndoe_20
 `guaclog -f /log/bastion/MON_SRV/MON_SRV_RECORD_johndoe_20210827_105342`
 
 
+
 # 🗃️ Drag And Drop (Partage de fichier distant)
 
 - Créer un dossier qui va accuellir l'ensemble des fichiers partagés
 ` mkdir /draganddrop`
 - Paramétrer ensuite votre connexion pour utiliser un lecteur réseau
-- 
+
 ### 🔹 Exemple de configuration
 ![alt text](https://github.com/zazazouthecat/guac-install/blob/main/dnd_guac.png?raw=true)
 
 Un dossier portant le nom de l'utilisateur (ici admin) sera créé dans le dossier /draganddrop/
 
-⚠️ ** Pensez à purger le dossier régulierement par une tache plannifée (crontab) **
+⚠️ **Pensez à purger le dossier régulierement par une tache plannifée (crontab)**
 `sudo rm /draganddrop/* -R`
+
 
 
 # ✏️ Customisation 

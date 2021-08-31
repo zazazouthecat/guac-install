@@ -11,6 +11,8 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
 ## 🐧 Linux distribution 
 ✅ Debian 10  ❌ Debian 11  ✅ Ubuntu 20
 
+#
+
 # 🚩 Installation 🚩
 
 ### Télécharger directement depuis :
@@ -34,6 +36,7 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
 
 ![alt text](https://github.com/zazazouthecat/guac-install/blob/main/ssh_guac.png?raw=true)
 
+#
 
 # 📚 Fonctionnement LDAP
 
@@ -57,6 +60,7 @@ ldap-search-bind-password:myverystrongpassword
 ldap-encryption-method: none
 ```
 
+#
 
 # 🛑 Enregistrement (Video & Keylogger)
 ## Variables exploitables
@@ -87,7 +91,7 @@ Encodage des frappes au clavier **/log/bastion/MON_SRV/MON_SRV_RECORD_johndoe_20
 
 `guaclog -f /log/bastion/MON_SRV/MON_SRV_RECORD_johndoe_20210827_105342`
 
-
+#
 
 # 🗃️ Drag And Drop (Partage de fichier distant)
 
@@ -105,7 +109,7 @@ Un dossier portant le nom de l'utilisateur (ici admin) sera créé dans le dossi
 
 `sudo rm /draganddrop/* -R`
 
-
+#
 
 # ✏️ Customisation 
 Personalisation du nom et du logo de la page d'acceuil de Guacamole

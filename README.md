@@ -93,7 +93,7 @@ Encodage des frappes au clavier **/log/bastion/MON_SRV/MON_SRV_RECORD_johndoe_20
 
 #
 
-# 🗃️ Drag And Drop (Partage de fichier distant)
+# 🗃️ Drag And Drop (Partage de fichiers distant)
 
 - Créer un dossier qui va accuellir l'ensemble des fichiers partagés
 ` mkdir /draganddrop/`

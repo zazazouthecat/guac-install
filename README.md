@@ -1,7 +1,7 @@
 # 🛡️ guac-install
 Script basé sur les sources https://github.com/MysticRyuujin/guac-install
 
-📝
+## 😺 Modifications
  - Ajout Fail2Ban & ufw
  - Ajout LDAP
  - Correctif droit root pour RDP

@@ -167,3 +167,5 @@ Le fichier `branding.jar` peut etre édité avec 7zip. (https://github.com/zazaz
 	  }
 }
 ```
+
+![alt text](https://github.com/zazazouthecat/guac-install/blob/main/home_custom.png?raw=true)

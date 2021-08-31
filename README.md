@@ -114,9 +114,8 @@ Le fichier `branding.jar` peut etre édité avec 7zip. (https://github.com/zazaz
 
 - Pour mettre votre logo  : - Remplacez le fichier `images\logo-placeholder.png`
 - Pour mettre votre propre nom  : - Editez avec bloc-note le fichier `translations\fr.json`, apres le champ `"NAME" : ` indiquez le nom que vous souhaitez entre **guillemet**
-- Mettre votre fichier personalisé `branding.jar` dans `/etc/guacamole/extensions/`
-
-**Redémarrez le service Tomcat et Guacamole pour que les modifications soient prises en compte**
+- Mettre votre fichier personnalisé `branding.jar` dans `/etc/guacamole/extensions/`
+- **Redémarrez le service Tomcat et Guacamole pour que les modifications soient prises en compte**
 
 #### 🔹 Exemple fichier fr.json
 

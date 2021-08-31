@@ -98,6 +98,17 @@ Redémarrez le service Tomcat et Guacamole pour que les modifications soient pri
 `sudo service tomcat9 restart && sudo service guacd restart`
 
 ### 🔹 Modification du fichier branding.jar
+📁 Arborescence
+```
+branding/
+├── css/
+│   ├── login-override.css
+├── images/
+│   └── logo-placeholder.png
+├── translations/
+│   ├── fr.json
+└── guac-manifest.jso
+```
 
 Le fichier `branding.jar` peut etre édité avec 7zip. (https://github.com/zazazouthecat/guac-install/raw/main/branding.jar)
 

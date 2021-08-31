@@ -132,8 +132,8 @@ Le fichier `branding.jar` peut etre édité avec 7zip. (https://github.com/zazaz
 	"CLIENT": {
 		  	
 	"TEXT_CLIENT_STATUS_CONNECTING": "Connexion...",
-    "TEXT_CLIENT_STATUS_DISCONNECTED": "Vous avez été deconnecté.",
-    "TEXT_CLIENT_STATUS_UNSTABLE": "La connexion au serveur semble instable.",
+    	"TEXT_CLIENT_STATUS_DISCONNECTED": "Vous avez été deconnecté.",
+   	"TEXT_CLIENT_STATUS_UNSTABLE": "La connexion au serveur semble instable.",
 	"TEXT_CLIENT_STATUS_WAITING": "Connexion, En attente de réponse..."
 		  
 	  }

@@ -92,15 +92,17 @@ Encodage des frappes au clavier **/log/bastion/MON_SRV/MON_SRV_RECORD_johndoe_20
 # 🗃️ Drag And Drop (Partage de fichier distant)
 
 - Créer un dossier qui va accuellir l'ensemble des fichiers partagés
-` mkdir /draganddrop`
+` mkdir /draganddrop/`
 - Paramétrer ensuite votre connexion pour utiliser un lecteur réseau
 
 ### 🔹 Exemple de configuration
 ![alt text](https://github.com/zazazouthecat/guac-install/blob/main/dnd_guac.png?raw=true)
+`\draganddrop\${GUAC_USERNAME}`
 
 Un dossier portant le nom de l'utilisateur (ici admin) sera créé dans le dossier /draganddrop/
 
 ⚠️ **Pensez à purger le dossier régulierement par une tache plannifée (crontab)**
+
 `sudo rm /draganddrop/* -R`
 
 

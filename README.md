@@ -101,7 +101,7 @@ Encodage des frappes au clavier **/log/bastion/MON_SRV/MON_SRV_RECORD_johndoe_20
 
 ### 🔹 Exemple de configuration
 ![alt text](https://github.com/zazazouthecat/guac-install/blob/main/dnd_guac.png?raw=true)
-`\draganddrop\${GUAC_USERNAME}`
+`draganddrop/${GUAC_USERNAME}`
 
 Un dossier portant le nom de l'utilisateur (ici admin) sera créé dans le dossier /draganddrop/
 

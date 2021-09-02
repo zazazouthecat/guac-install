@@ -20,7 +20,7 @@ fi
 
 # Check to see if any old files left over
 if [ "$( find . -maxdepth 1 \( -name 'guacamole-*' -o -name 'mysql-connector-java-*' \) )" != "" ]; then
-    echo "Fichiers d'installation temporaire detectés. Merci d'executer 'rm guacamole-* -R' & 'rm mysql-connector-java-* -R'" 1>&2
+    echo -e "Fichiers d'installation temporaire detectés. Merci d'executer 'rm guacamole-* -R' & 'rm mysql-connector-java-* -R'" 1>&2
     exit 1
 fi
 

@@ -863,10 +863,10 @@ if [ "${installFail2ban}" = true ]; then
     echo "enabled = true" >> /etc/fail2ban/jail.d/guacamole.conf
 	echo "banaction=ufw" >> /etc/fail2ban/jail.d/guacamole.conf
 	#On transforme les minustes de fail2banbanTime en secondes
-	fail2banbanTime=fail2banbanTime*60
+	fail2banbanTime=$((fail2banbanTime*60))
     echo "bantime=${fail2banbanTime}" >> /etc/fail2ban/jail.d/guacamole.conf
 	#On transforme les minustes de fail2banfindTime en secondes
-	fail2banfindTime=fail2banfindTime*60
+	fail2banfindTime=$((fail2banfindTime*60))
     echo "findtime=${fail2banfindTime}" >> /etc/fail2ban/jail.d/guacamole.conf
 	echo "maxretry=${fail2banmaxRetry}" >> /etc/fail2ban/jail.d/guacamole.conf
 	

@@ -178,7 +178,7 @@ done
 
 if [[ -z ${installMySQL} ]]; then
     # Prompt the user to see if they would like to install MySQL, default of yes
-    echo "${YELLOW} MySQL est requis pour l'installation, Si vous souhaitez utiliser un serveur Mysql Distant répondre 'n'"
+    echo -e "${YELLOW} MySQL est requis pour l'installation, Si vous souhaitez utiliser un serveur Mysql Distant répondre 'n'"
     echo -e -n "${CYAN}Voulez-vous installer MySQL en local ? (O/n): ${NC}"
     read PROMPT
     if [[ ${PROMPT} =~ ^[Nn]$ ]]; then

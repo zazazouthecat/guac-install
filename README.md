@@ -30,11 +30,11 @@ Script basé sur les sources https://github.com/MysticRyuujin/guac-install
 
 ### 🔹 Exemple connexion RDP
 
-![alt text](https://github.com/zazazouthecat/guac-install/blob/main/rdp_guac.png?raw=true)
+![alt text](https://github.com/zazazouthecat/guac-install/blob/main/images/rdp_guac.png?raw=true)
 
 ### 🔹 Exemple connexion SSH
 
-![alt text](https://github.com/zazazouthecat/guac-install/blob/main/ssh_guac.png?raw=true)
+![alt text](https://github.com/zazazouthecat/guac-install/blob/main/images/ssh_guac.png?raw=true)
 
 #
 
@@ -47,7 +47,7 @@ Apres avoir installé le module LDAP (demandé lors de l'installation)
 - Enfin connectez vous avec votre compte AD (Vous allez récupérer l'administration de guacamole + la gestion des comptes de votre AD)
 
 ### 🔹 Exemple AD
-![alt text](https://github.com/zazazouthecat/guac-install/blob/main/ldap_guac.png?raw=true)
+![alt text](https://github.com/zazazouthecat/guac-install/blob/main/images/ldap_guac.png?raw=true)
 
 ### 🔹 Extrait de /etc/guacamole/guacamole.properties
 ```
@@ -79,7 +79,7 @@ il faudra exploiter la commande `guacenc` pour encoder la video
 il faudra exploiter la commande `guaclog` pour encoder les frappes clavier
 
 ### 🔹 Exemple d'enregistrement
-![alt text](https://github.com/zazazouthecat/guac-install/blob/main/rec_guac.png?raw=true)
+![alt text](https://github.com/zazazouthecat/guac-install/blob/main/images/rec_guac.png?raw=true)
 
 ### 🔹 Exemple d'encodage vidéo & frappes clavier
 
@@ -100,7 +100,7 @@ Encodage des frappes au clavier **/log/bastion/MON_SRV/MON_SRV_RECORD_johndoe_20
 - Paramétrer ensuite votre connexion pour utiliser un lecteur réseau
 
 ### 🔹 Exemple de configuration
-![alt text](https://github.com/zazazouthecat/guac-install/blob/main/dnd_guac.png?raw=true)
+![alt text](https://github.com/zazazouthecat/guac-install/blob/main/images/dnd_guac.png?raw=true)
 `/draganddrop/${GUAC_USERNAME}`
 
 Un dossier portant le nom de l'utilisateur (ici admin) sera créé dans le dossier /draganddrop/
@@ -168,4 +168,4 @@ Le fichier `branding.jar` peut etre édité avec 7zip. (https://github.com/zazaz
 }
 ```
 
-![alt text](https://github.com/zazazouthecat/guac-install/blob/main/home_custom.png?raw=true)
+![alt text](https://github.com/zazazouthecat/guac-install/blob/main/images/home_custom.png?raw=true)

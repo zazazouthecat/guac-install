@@ -13,6 +13,7 @@ if ! [ $( id -u ) = 0 ]; then
     echo "Merci de lancer ce script en root ou sudo" 1>&2
     exit 1
 else
+	apt intsall sudo
 	echo -e "Ajout de Root au sudoers"
 	sudo usermod -aG sudo root
 	echo

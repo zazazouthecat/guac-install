@@ -636,6 +636,13 @@ if [ "${installLDAP}" = true ]; then
 	echo -e "${GREEN}OK${NC}"
 fi
 
+# Create guacd.conf file required for 1.4.0
+echo -e "${YELLOW}Création du fichier guacd.conf si 1.4.0...${NC}"
+cat >> /etc/guacamole/guacd.conf <<- "EOF"
+[server]
+bind_host = 0.0.0.0
+bind_port = 4822
+EOF
 
 # Restart Tomcat
 echo -e "${CYAN}Redémarrage du service Tomcat & Activation au démarrage...${NC}"

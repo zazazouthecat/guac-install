@@ -628,8 +628,9 @@ if [ "${installLDAP}" = true ]; then
     echo "ldap-port: ${ldapPort}" >> /etc/guacamole/guacamole.properties
     echo "ldap-user-base-dn: OU=${ldapUserOu},DC=${ldapDC1},DC=${ldapDC2}" >> /etc/guacamole/guacamole.properties
 	echo "ldap-username-attribute: ${ldapUserAttribute}" >> /etc/guacamole/guacamole.properties
-	echo "ldap-search-bind-dn: CN=${ldapUserBind},OU=${ldapUserBindOu},DC=${ldapDC1},DC=${ldapDC2}" >> /etc/guacamole/guacamole.properties
+	echo "ldap-search-bind-dn: ${ldapUserBind}@${ldapDC1}.${ldapDC2}" >> /etc/guacamole/guacamole.properties
 	echo "ldap-search-bind-password:${ldapUserBindPassword}" >> /etc/guacamole/guacamole.properties
+ 	echo "ldap-config-base-dn: dc=${ldapDC1},dc=${ldapDC2}" >> /etc/guacamole/guacamole.properties
 	echo "ldap-encryption-method: none" >> /etc/guacamole/guacamole.properties
 	
     echo -e "${YELLOW}LDAP installé et configuré, Vérifiez au besoin dans /etc/guacamole/guacamole.properties${NC}"

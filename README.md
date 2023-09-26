@@ -55,8 +55,9 @@ ldap-hostname: JohnDoe.local
 ldap-port: 389
 ldap-user-base-dn: OU=Accounts_Users,DC=JohnDoe,DC=local
 ldap-username-attribute: sAMAccountName
-ldap-search-bind-dn: CN=ad_binder,OU=Accounts_Service,DC=JohnDoe,DC=local
+ldap-search-bind-dn: guacbind-ad@JohnDoe.local
 ldap-search-bind-password:myverystrongpassword
+ldap-config-base-dn: dc=JohnDoe,dc=local
 ldap-encryption-method: none
 ```
 
